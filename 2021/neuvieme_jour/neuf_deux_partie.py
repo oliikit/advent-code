@@ -3,7 +3,7 @@ with open('packet.txt', 'r') as f:
 
     for i in range(len(packet)):
         is_duplicate = True
-        snippet = packet[i:i+4]
+        snippet = packet[i:i+14]
         occurrences = []
 
         for j in range(len(snippet)):
@@ -11,7 +11,7 @@ with open('packet.txt', 'r') as f:
             occurrences.append(num_of_occur)
         all_unique = [i for i in occurrences if i == 1]
         
-        if len(all_unique) == 4:
+        if len(all_unique) == 14:
             print(snippet)
-            print(i+4)
+            print(i+14)
             break
