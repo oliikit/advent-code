@@ -45,7 +45,7 @@ with open("commands.txt", "r") as f:
     # add all dirs together
     for file in sorted(file_size):
         match = dict(filter(lambda item: file in item[0], file_size.items()))
-        print(f'{file}: {match} \n')
+        # print(f'{file}: {match} \n')
         if len(match) > 1:
             for k, v in match.items():
                 file_size[file] += v
@@ -57,5 +57,21 @@ with open("commands.txt", "r") as f:
     for file in sorted(min_size, reverse=True):
         total_size += min_size[file] # this is a bottom file so gets added
 
+
+    system_space = 70000000
+    needed_space = 30000000
+    search_space = system_space - needed_space
+    used_space = sum(file_size.values())
+    del_val = system_space
+
+    # find the smallest file that can be deleted
+    for file in sorted(file_size):
+        print(used_space - file_size[file])
+
+        if (used_space - file_size[file]) <= search_space and file_size[file] < del_val:
+            print(file_size[file])
+            del_val = file_size[file]
+
     print(f'Total size: {total_size}')
+    print(f'File to delete: {del_val}')
     
